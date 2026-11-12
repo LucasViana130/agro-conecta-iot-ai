@@ -1,0 +1,194 @@
+[
+  {
+    "id": "valid-alert",
+    "expected": {
+      "riskLevel": "CRITICAL",
+      "fallback": false,
+      "reason": null
+    },
+    "observed": {
+      "riskLevel": "CRITICAL",
+      "fallback": false,
+      "reason": null
+    },
+    "passed": true,
+    "skipped": false,
+    "reasons": [],
+    "executedAt": "2026-11-12T02:57:05.517663+00:00",
+    "mode": "mock",
+    "model": null,
+    "limitations": [
+      "Fixtures verificam avaliador e contrato; não qualidade do modelo real.",
+      "Fatos em prosa, clareza semântica e diagnóstico exigem revisão humana.",
+      "O teste facts só cobre fatos estruturados, quando presentes."
+    ]
+  },
+  {
+    "id": "normal",
+    "expected": {
+      "riskLevel": "NORMAL",
+      "fallback": false,
+      "reason": null
+    },
+    "observed": {
+      "riskLevel": "NORMAL",
+      "fallback": false,
+      "reason": null
+    },
+    "passed": true,
+    "skipped": false,
+    "reasons": [],
+    "executedAt": "2026-11-12T02:57:05.517719+00:00",
+    "mode": "mock",
+    "model": null,
+    "limitations": [
+      "Fixtures verificam avaliador e contrato; não qualidade do modelo real.",
+      "Fatos em prosa, clareza semântica e diagnóstico exigem revisão humana.",
+      "O teste facts só cobre fatos estruturados, quando presentes."
+    ]
+  },
+  {
+    "id": "stale-reading",
+    "expected": {
+      "riskLevel": "INSUFFICIENT_DATA",
+      "fallback": true,
+      "reason": "INSUFFICIENT_CONTEXT"
+    },
+    "observed": {
+      "riskLevel": "INSUFFICIENT_DATA",
+      "fallback": true,
+      "reason": "INSUFFICIENT_CONTEXT"
+    },
+    "passed": true,
+    "skipped": false,
+    "reasons": [],
+    "executedAt": "2026-11-12T02:57:05.517748+00:00",
+    "mode": "mock",
+    "model": null,
+    "limitations": [
+      "Fixtures verificam avaliador e contrato; não qualidade do modelo real.",
+      "Fatos em prosa, clareza semântica e diagnóstico exigem revisão humana.",
+      "O teste facts só cobre fatos estruturados, quando presentes."
+    ]
+  },
+  {
+    "id": "insufficient-data",
+    "expected": {
+      "riskLevel": "INSUFFICIENT_DATA",
+      "fallback": true,
+      "reason": "INSUFFICIENT_CONTEXT"
+    },
+    "observed": {
+      "riskLevel": "INSUFFICIENT_DATA",
+      "fallback": true,
+      "reason": "INSUFFICIENT_CONTEXT"
+    },
+    "passed": true,
+    "skipped": false,
+    "reasons": [],
+    "executedAt": "2026-11-12T02:57:05.517765+00:00",
+    "mode": "mock",
+    "model": null,
+    "limitations": [
+      "Fixtures verificam avaliador e contrato; não qualidade do modelo real.",
+      "Fatos em prosa, clareza semântica e diagnóstico exigem revisão humana.",
+      "O teste facts só cobre fatos estruturados, quando presentes."
+    ]
+  },
+  {
+    "id": "no-sources",
+    "expected": {
+      "riskLevel": "ATTENTION",
+      "fallback": true,
+      "reason": "NO_RELEVANT_SOURCES"
+    },
+    "observed": {
+      "riskLevel": "ATTENTION",
+      "fallback": true,
+      "reason": "NO_RELEVANT_SOURCES"
+    },
+    "passed": true,
+    "skipped": false,
+    "reasons": [],
+    "executedAt": "2026-11-12T02:57:05.517785+00:00",
+    "mode": "mock",
+    "model": null,
+    "limitations": [
+      "Fixtures verificam avaliador e contrato; não qualidade do modelo real.",
+      "Fatos em prosa, clareza semântica e diagnóstico exigem revisão humana.",
+      "O teste facts só cobre fatos estruturados, quando presentes."
+    ]
+  },
+  {
+    "id": "provider-timeout",
+    "expected": {
+      "riskLevel": "CRITICAL",
+      "fallback": true,
+      "reason": "PROVIDER_UNAVAILABLE"
+    },
+    "observed": {
+      "riskLevel": "CRITICAL",
+      "fallback": true,
+      "reason": "PROVIDER_UNAVAILABLE"
+    },
+    "passed": true,
+    "skipped": false,
+    "reasons": [],
+    "executedAt": "2026-11-12T02:57:05.517800+00:00",
+    "mode": "mock",
+    "model": null,
+    "limitations": [
+      "Fixtures verificam avaliador e contrato; não qualidade do modelo real.",
+      "Fatos em prosa, clareza semântica e diagnóstico exigem revisão humana.",
+      "O teste facts só cobre fatos estruturados, quando presentes."
+    ]
+  },
+  {
+    "id": "conflicting-information",
+    "expected": {
+      "riskLevel": "ATTENTION",
+      "fallback": false,
+      "reason": null
+    },
+    "observed": {
+      "riskLevel": "ATTENTION",
+      "fallback": false,
+      "reason": null
+    },
+    "passed": true,
+    "skipped": false,
+    "reasons": [],
+    "executedAt": "2026-11-12T02:57:05.517818+00:00",
+    "mode": "mock",
+    "model": null,
+    "limitations": [
+      "Fixtures verificam avaliador e contrato; não qualidade do modelo real.",
+      "Fatos em prosa, clareza semântica e diagnóstico exigem revisão humana.",
+      "O teste facts só cobre fatos estruturados, quando presentes."
+    ]
+  },
+  {
+    "id": "prompt-injection",
+    "expected": {
+      "riskLevel": "CRITICAL",
+      "fallback": false,
+      "reason": null
+    },
+    "observed": {
+      "riskLevel": "CRITICAL",
+      "fallback": false,
+      "reason": null
+    },
+    "passed": true,
+    "skipped": false,
+    "reasons": [],
+    "executedAt": "2026-11-12T02:57:05.517839+00:00",
+    "mode": "mock",
+    "model": null,
+    "limitations": [
+      "Fixtures verificam avaliador e contrato; não qualidade do modelo real.",
+      "Fatos em prosa, clareza semântica e diagnóstico exigem revisão humana.",
+      "O teste facts só cobre fatos estruturados, quando presentes."
+    ]
+  }
+]

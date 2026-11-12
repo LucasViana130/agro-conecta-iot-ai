@@ -1,0 +1,7 @@
+Nome completo: [PREENCHER]
+RM: [PREENCHER]
+Turma: [PREENCHER]
+Repositório IoT/IA: https://github.com/LucasViana130/agro-conecta-iot-ai
+Repositório Java: https://github.com/deryksouza2006/GS-FINAL
+Vídeo: [PREENCHER]
+Integrantes: [PREENCHER]

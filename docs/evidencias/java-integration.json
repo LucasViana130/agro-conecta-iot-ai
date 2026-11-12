@@ -1,0 +1,76 @@
+{
+  "executedAt": "2026-11-12T03:03:23.779929+00:00",
+  "mode": "real-java-local-ai-disabled",
+  "scenarios": [
+    {
+      "scenario": "normal",
+      "riskLevel": "NORMAL",
+      "calculatedHealth": "HEALTHY",
+      "guidanceFallback": true,
+      "simulatedSource": true,
+      "ownerIsolation": true,
+      "invalidInputRejected": true,
+      "anonymousRejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "attention",
+      "riskLevel": "ATTENTION",
+      "calculatedHealth": "HEALTHY",
+      "guidanceFallback": true,
+      "simulatedSource": true,
+      "ownerIsolation": true,
+      "invalidInputRejected": true,
+      "anonymousRejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "critical",
+      "riskLevel": "CRITICAL",
+      "calculatedHealth": "HEALTHY",
+      "guidanceFallback": true,
+      "simulatedSource": true,
+      "ownerIsolation": true,
+      "invalidInputRejected": true,
+      "anonymousRejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "insufficient-data",
+      "riskLevel": "INSUFFICIENT_DATA",
+      "calculatedHealth": "HEALTHY",
+      "guidanceFallback": true,
+      "simulatedSource": true,
+      "ownerIsolation": true,
+      "invalidInputRejected": true,
+      "anonymousRejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "sensor-stale",
+      "riskLevel": "INSUFFICIENT_DATA",
+      "calculatedHealth": "STALE",
+      "guidanceFallback": true,
+      "simulatedSource": true,
+      "ownerIsolation": true,
+      "invalidInputRejected": true,
+      "anonymousRejected": true,
+      "passed": true
+    },
+    {
+      "scenario": "possible-sensor-fault",
+      "riskLevel": "NORMAL",
+      "calculatedHealth": "POSSIBLE_FAULT",
+      "guidanceFallback": true,
+      "simulatedSource": true,
+      "ownerIsolation": true,
+      "invalidInputRejected": true,
+      "anonymousRejected": true,
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Gemini não foi chamado",
+    "Banco de desenvolvimento; dados descartáveis"
+  ]
+}
