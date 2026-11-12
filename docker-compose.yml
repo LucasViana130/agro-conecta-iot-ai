@@ -1,0 +1,14 @@
+services:
+  simulator:
+    build: .
+    environment:
+      JAVA_API_BASE_URL: ${JAVA_API_BASE_URL:-http://host.docker.internal:8080}
+      JAVA_API_TOKEN: ${JAVA_API_TOKEN:-}
+      JAVA_API_USERNAME: ${JAVA_API_USERNAME:-}
+      JAVA_API_PASSWORD: ${JAVA_API_PASSWORD:-}
+      CROP_AREA_ID: ${CROP_AREA_ID:-1}
+      SENSOR_ID: ${SENSOR_ID:-1}
+      SIMULATOR_SEED: ${SIMULATOR_SEED:-2026}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: ["simulate", "--scenario", "normal", "--dry-run"]

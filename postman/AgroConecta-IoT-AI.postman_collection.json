@@ -1,0 +1,214 @@
+{
+  "info": {
+    "name": "Agro Conecta IoT/IA",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "APP_DEMO_ENABLED=true. Configure cultivo WEATHER_STATION exclusivo e perfil DEMO 32/12. Poll interrompe após 30 consultas; IA real é opcional e pode consumir cota. Não exporte tokens."
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/auth/login",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}"
+        },
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Token presente\",()=>pm.expect(pm.response.json().token).to.be.a(\"string\"));",
+              "if(pm.response.code===200) pm.environment.set(\"token\",pm.response.json().token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Leitura SIMULATED",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/simulated-readings",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sensorId\": \"{{sensorId}}\",\n  \"measuredAt\": \"{{$isoTimestamp}}\",\n  \"source\": \"SIMULATED\",\n  \"temperatureCelsius\": 35,\n  \"airHumidityPercent\": 35,\n  \"soilMoisturePercent\": 14,\n  \"batteryPercent\": 100\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 201\",()=>pm.response.to.have.status(201));",
+              "pm.test(\"Origem\",()=>pm.expect(pm.response.json().source).to.eql(\"SIMULATED\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Solicitar risco",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/crop-areas/{{cropAreaId}}/risk-jobs"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 202\",()=>pm.response.to.have.status(202));",
+              "pm.environment.set(\"jobId\",pm.response.json().id);",
+              "pm.variables.set(\"pollCount\",0);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consultar risco",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/risk-jobs/{{jobId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const job=pm.response.json();",
+              "const count=Number(pm.variables.get(\"pollCount\")||0)+1; pm.variables.set(\"pollCount\",count);",
+              "if(!job.result && job.status!==\"FAILED\" && count<30) pm.execution.setNextRequest(\"Consultar risco\");",
+              "else pm.test(\"Risco crítico concluído\",()=>pm.expect(job.result.riskLevel).to.eql(\"CRITICAL\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consultar alerta",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/alerts/{{jobId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Alerta\",()=>pm.expect(pm.response.json().alert).to.be.an(\"object\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Entender alerta",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/risk-jobs/{{jobId}}/guidance"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "const job=pm.response.json();",
+              "pm.test(\"Risco preservado\",()=>pm.expect(job.result.riskLevel).to.eql(\"CRITICAL\"));",
+              "pm.test(\"Contingência explícita\",()=>pm.expect(job.guidance.fallback).to.be.a(\"boolean\"));",
+              "pm.test(\"Fontes e limitações\",()=>{pm.expect(job.guidance.sources).to.be.an(\"array\");pm.expect(job.guidance.warnings).to.be.an(\"array\");});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Saúde do sensor",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/api/sensors/{{sensorId}}/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\",()=>pm.response.to.have.status(200));",
+              "pm.test(\"Saúde calculada\",()=>pm.expect(pm.response.json().calculatedHealth).to.be.a(\"string\"));",
+              "pm.environment.unset(\"token\");"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
