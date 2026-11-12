@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "agro-conecta-iot-ai"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = []
+[project.optional-dependencies]
+dev = ["ruff==0.14.4"]
+[project.scripts]
+agro-conecta-iot = "agro_conecta_iot.cli:main"
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.ruff]
+line-length = 120
