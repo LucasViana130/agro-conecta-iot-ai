@@ -8,8 +8,10 @@ O avaliador confere preservação do risco, fallback/motivo, atribuição de fon
 
 [Integração local executada](evidencias/java-integration.json): seis cenários Python → HTTP → Java → PostgreSQL/RabbitMQ → resultado/fallback passaram. Foram conferidos source, regras esperadas, saúde, isolamento entre dois produtores, rejeição de entrada inválida e JWT ausente. AI desabilitada: não houve geração Gemini nessa execução.
 
+[Diagnóstico real executado](evidencias/gemini-live.json): um cenário crítico controlado foi enviado ao Java no Render. A orientação usou `gemini-3.5-flash-lite`, recuperou quatro fontes, não usou fallback e preservou o risco `CRITICAL`. O relatório contém apenas metadados; não é uma avaliação estatística nem substitui revisão humana ou agronômica.
+
 Java usa fakes de AgronomicAiClient/VectorStore para timeout, ausência de fontes, contexto insuficiente, atribuição, preservação do risco e autorização. O teste do prompt verifica que instruções maliciosas ficam no conteúdo não confiável, sem se tornar mensagem de sistema. Não demonstra imunidade do modelo em produção.
 
 Modo live: preparar jobs controlados, registrar IDs de fontes recuperadas independentemente e executar `python -m agro_conecta_iot evaluate --live --bindings reports/bindings.json`. Sem binding, cada caso aparece como não executado e o comando retorna falha. Não injete falhas de provedor em produção. Para validar timeout/injection real, use ambiente de teste e corpus controlado. Modelo retornado e data são registrados. Não invente nem preencha resultados antes de executar.
 
-Não executados: Gemini/embeddings reais (sem chave configurada), revisão agronômica humana, UI Mobile e coleção no Runner Postman. A coleção foi validada como JSON; as mesmas rotas foram exercitadas pelo cliente Python real. Ver [resumo de evidências](evidencias/README.md).
+Ainda não executados: avaliação semântica ampla com amostra revisada por pessoas, revisão agronômica, UI Mobile e coleção no Runner Postman. Gemini e embeddings reais foram exercitados somente no diagnóstico controlado descrito acima. A coleção foi validada como JSON; as mesmas rotas foram exercitadas pelo cliente Python real. Ver [resumo de evidências](evidencias/README.md).

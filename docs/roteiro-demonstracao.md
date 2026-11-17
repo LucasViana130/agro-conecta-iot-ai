@@ -10,4 +10,4 @@ Preparar antes: dependências Java, API, perfil DEMO, um cultivo WEATHER_STATION
 6. 2:15–2:35: demonstração preparada com provedor indisponível/AI desabilitada, mostrar reason e sources vazias.
 7. 2:35–3:00: relatório mock e integração local, limitações, verificação de segredos e próximos passos.
 
-Use coleção Postman para consulta/orientação. A API pode ser mostrada enquanto Mobile não existe, declarando essa limitação. Grave link após validar geração real; nenhum vídeo foi produzido automaticamente.
+Use a coleção Postman como apoio técnico e, quando possível, mostre a orientação também pelo Mobile AgroConecta. Se houver falha de integração no dia, demonstre pela API e declare a limitação sem apresentar fallback como geração real. Nenhum vídeo foi produzido automaticamente.

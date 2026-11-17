@@ -1,0 +1,50 @@
+{
+  "executedAt": "2026-11-17T19:46:01.998061+00:00",
+  "mode": "real-java-render-ai-enabled",
+  "javaCommit": "a82309765df9787565df40b0ce2a1e7f2cee067f",
+  "scenario": "critical",
+  "riskBefore": "CRITICAL",
+  "riskAfter": "CRITICAL",
+  "riskPreserved": true,
+  "fallback": false,
+  "model": "gemini-3.5-flash-lite",
+  "promptVersion": "agronomic-v1",
+  "sourceCount": 4,
+  "sources": [
+    {
+      "sourceId": "embrapa-milho-desenvolvimento",
+      "title": "Desenvolvimento do milho e disponibilidade de água",
+      "institution": "Embrapa",
+      "url": "https://www.embrapa.br/web/agencia-de-informacao-tecnologica/cultivos/milho/pre-producao/caracteristicas-da-especie-e-relacoes-com-o-ambiente/caracteristicas-da-planta",
+      "version": "1"
+    },
+    {
+      "sourceId": "embrapa-irrigacao-milho",
+      "title": "Manejo de irrigação do milho",
+      "institution": "Embrapa",
+      "url": "https://www.embrapa.br/en/web/agencia-de-informacao-tecnologica/cultivos/milho/producao/irrigacao/manejo",
+      "version": "1"
+    },
+    {
+      "sourceId": "fao-irrigation-management",
+      "title": "Gestão de água e irrigação",
+      "institution": "FAO",
+      "url": "https://www.fao.org/land-water/water/agricultural-water-management/irrigation/en",
+      "version": "1"
+    },
+    {
+      "sourceId": "embrapa-umidade-familiar",
+      "title": "Umidade do solo na agricultura familiar",
+      "institution": "Embrapa",
+      "url": "https://www.infoteca.cnptia.embrapa.br/handle/doc/974063",
+      "version": "1"
+    }
+  ],
+  "warningCount": 7,
+  "storedIdempotently": true,
+  "contentStoredInEvidence": false,
+  "limitations": [
+    "Dados e perfil agronômico demonstrativos",
+    "Resposta integral omitida da evidência; revisão humana continua obrigatória"
+  ]
+}

@@ -4,7 +4,7 @@ Apoio ao pequeno produtor que precisa acompanhar o solo e decidir quando verific
 
 ## Responsabilidades e arquitetura
 
-Este repositório contém Python para simulação, integração e avaliação. A [API Java](https://github.com/deryksouza2006/GS-FINAL) mantém autenticação, propriedade dos dados, persistência, indicadores, RabbitMQ, alertas, Spring AI e RAG. Não há chatbot Python, NDVI nem cópia da API. O Mobile é consumidor futuro; não está implementado neste pacote.
+Este repositório contém Python para simulação, integração e avaliação. A [API Java](https://github.com/deryksouza2006/GS-FINAL) mantém autenticação, propriedade dos dados, persistência, indicadores, RabbitMQ, alertas, Spring AI e RAG. Não há chatbot Python, NDVI nem cópia da API. O [Mobile AgroConecta](https://github.com/deryksouza2006/AgroSolution) consome a API Java e permanece fora deste pacote.
 
 ```mermaid
 flowchart LR
@@ -16,7 +16,7 @@ flowchart LR
   D --> A[Alerta / RiskJob]
   A --> G[Entender alerta / Spring AI]
   V[(PGVector / fontes controladas)] --> G
-  G --> M[Mobile: integração futura]
+  G --> M[Mobile AgroConecta]
 ```
 
 ## Instalação e execução
@@ -53,13 +53,15 @@ python -m agro_conecta_iot simulate --scenario possible-sensor-fault
 
 Docker: `docker compose run --rm simulator` executa dry-run. Para envio, sobrescreva o comando e configure variáveis. Não são duplicados os serviços PostgreSQL/RabbitMQ do Java. O hostname `host.docker.internal` aponta para o Java no host.
 
+Os verificadores finais são opt-in e criam dados identificados como DEMO. Use `python scripts/verify_java.py` somente contra banco local descartável com IA desabilitada. `python scripts/verify_live_ai.py` exige um ambiente controlado com IA real habilitada e registra apenas metadados sanitizados em `reports/`.
+
 ## Sensores e indicadores
 
 Temperatura °C, umidade do ar/solo %, bateria %, timestamps UTC e chuva opcional com intervalo. Perfil DEMO: capacidade de campo 32%, ponto de murcha 12%. Esses números são dados de teste e não recomendações agronômicas. Java calcula VPD, disponibilidade hídrica, tendência, chuva e saúde. Ver [fórmulas e limites](docs/indicadores-iot.md).
 
 ## IA e RAG
 
-Spring AI usa Gemini 2.5 Flash por padrão; embeddings `gemini-embedding-001` (768 dimensões), PGVector e quatro resumos institucionais versionados. RAG foi escolhido para limitar a orientação a referências atribuídas sem treinar outro modelo. Fontes vêm da recuperação, não do texto gerado. Erros e contexto insuficiente geram fallback explícito sem fonte inventada. Ver [RAG](docs/rag.md) e [manifesto](knowledge-base/sources.json).
+Spring AI usa `gemini-3.5-flash-lite` por padrão; embeddings `gemini-embedding-001` (768 dimensões), PGVector e quatro resumos institucionais versionados. RAG foi escolhido para limitar a orientação a referências atribuídas sem treinar outro modelo. Fontes vêm da recuperação, não do texto gerado. Erros e contexto insuficiente geram fallback explícito sem fonte inventada. Ver [RAG](docs/rag.md) e [manifesto](knowledge-base/sources.json). O modelo pertence à configuração do Java e deve permanecer alinhado entre os dois repositórios.
 
 `evaluate` usa oito fixtures locais e não consome serviço pago. `evaluate --live --bindings reports/bindings.json` usa jobs reais previamente preparados; pode consumir provedor pago no Java. Sem binding, o caso fica não executado e a saída não passa. [Avaliação](docs/avaliacao-ia.md) distingue contrato, integração real local e modelo real. Não atribuímos precisão ao Gemini com base em mocks.
 
@@ -69,11 +71,27 @@ JWT, isolamento no Java, rota de simulação desabilitada por padrão, timeout H
 
 ## Entrega FIAP
 
-[Checklist da rubrica](docs/checklist-rubrica.md), [roteiro de três minutos](docs/roteiro-demonstracao.md), [evidências](docs/evidencias/) e [identificação](entrega/identificacao.txt).
+[Checklist da rubrica](docs/checklist-rubrica.md), [roteiro de três minutos](docs/roteiro-demonstracao.md), [evidências](docs/evidencias/), [identificação](entrega/identificacao.txt) e [preflight final](docs/PRONTO_PARA_ENTREGA.md).
 
-- Integrantes, RM e turma: **PREENCHER** em identificação antes de entregar.
-- Vídeo: **PREENCHER após gravação**.
-- IoT/IA: https://github.com/LucasViana130/agro-conecta-iot-ai
-- Java: https://github.com/deryksouza2006/GS-FINAL
+### Links da entrega
+
+| Item | Link |
+| --- | --- |
+| Repositório IoT/IA | https://github.com/LucasViana130/agro-conecta-iot-ai |
+| Repositório Java | https://github.com/deryksouza2006/GS-FINAL |
+| API Java no Render | https://agroconecta-api-ms1a.onrender.com |
+| Swagger da API | https://agroconecta-api-ms1a.onrender.com/swagger-ui/index.html |
+| Mobile AgroConecta | https://github.com/deryksouza2006/AgroSolution |
+| Evidências técnicas | [docs/evidencias](docs/evidencias/) |
+
+### Integrantes
+
+| Nome completo | RM | Turma |
+| --- | --- | --- |
+| **PENDENTE DE DADOS DO GRUPO** | **PREENCHER** | **PREENCHER** |
+
+Substitua a linha acima e repita-a para todos os integrantes. Use os mesmos dados em `entrega/identificacao.txt`.
+
+A entrega oficial da disciplina é somente o `.txt`; um link de vídeo pode ser mantido como evidência interna, mas não substitui a apresentação presencial.
 
 Uso de IA: Codex auxiliou inspeção, implementação, testes e documentação. O grupo deve revisar, compreender e defender o trabalho. Gemini é o modelo da funcionalidade em runtime; sua validação real está separada dos testes automatizados sem provedor. Nenhuma informação pessoal de integrantes foi inventada.
