@@ -1,7 +1,7 @@
-NOME COMPLETO; RM; TURMA
-[PREENCHER]; [PREENCHER]; [PREENCHER]
-
-# Repita a linha acima para cada integrante e remova esta instrução.
-# A entrega oficial deve conter somente identificação e o link do GitHub.
+NOME COMPLETO; RM
+Lucas Gonçalves Viana; 563254
+Deryk de Souza Queiroz; 563412
+Vinicius Paschoeto da Silva; 563089
+Felipe Wiclif Leal da Silva; 563901
 
 Repositório: https://github.com/LucasViana130/agro-conecta-iot-ai

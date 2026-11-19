@@ -86,11 +86,12 @@ JWT, isolamento no Java, rota de simulação desabilitada por padrão, timeout H
 
 ### Integrantes
 
-| Nome completo | RM | Turma |
-| --- | --- | --- |
-| **PENDENTE DE DADOS DO GRUPO** | **PREENCHER** | **PREENCHER** |
-
-Substitua a linha acima e repita-a para todos os integrantes. Use os mesmos dados em `entrega/identificacao.txt`.
+| Nome completo | RM |
+| --- | --- |
+| Lucas Gonçalves Viana | 563254 |
+| Deryk de Souza Queiroz | 563412 |
+| Vinicius Paschoeto da Silva | 563089 |
+| Felipe Wiclif Leal da Silva | 563901 |
 
 A entrega oficial da disciplina é somente o `.txt`; um link de vídeo pode ser mantido como evidência interna, mas não substitui a apresentação presencial.
 
